@@ -18,7 +18,7 @@ A minimal devfile sufficient to run a workspace consists of the following parts:
 .Example of a minimal devfile with no project
 [source,yaml]
 ----
-apiVersion: 1.0.0
+schemaVersion: 2.0.0
 metadata:
   name: minimal-workspace
 ----
@@ -34,17 +34,18 @@ Add the following parts for a more functional workspace:
 .Example of a minimal devfile with a project
 [source,yaml]
 ----
-apiVersion: 1.0.0
+schemaVersion: 2.0.0
 metadata:
   name: petclinic-dev-environment
 projects:
   - name: petclinic
-    source:
-      type: git
+    git:
       location: 'https://github.com/spring-projects/spring-petclinic.git'
+      branch: master
 components:
-  - type: chePlugin
-    id: redhat/java/latest
+  - chePlugin
+      registryEntry:
+        id: redhat/java/latest
 ----
 
 
@@ -56,18 +57,16 @@ A single devfile can specify multiple projects. For each project, specify the ty
 .Example of a devfile with two projects
 [source,yaml]
 ----
-apiVersion: 1.0.0
+schemaVersion: 2.0.0
 metadata:
   name: example-devfile
 projects:
 - name: frontend
-  source:
-    type: git
+  git:
     location: https://github.com/acmecorp/frontend.git
 - name: backend
   clonePath: src/github.com/acmecorp/backend
-  source:
-    type: git
+  git:
     location: https://github.com/acmecorp/backend.git
 ----
 

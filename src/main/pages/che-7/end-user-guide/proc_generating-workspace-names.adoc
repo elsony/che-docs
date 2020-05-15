@@ -9,7 +9,7 @@ To specify a prefix for automatically generated workspace names, set the `genera
 
 [source,yaml]
 ----
-apiVersion: 1.0.0
+schemaVersion: 2.0.0
 metadata:
   generateName: che-
 ----
